@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_screen_title_text_size">70sp</dimen>
+
+    <dimen name="intro_screen_title_text_size">40sp</dimen>
+    <dimen name="intro_screen_title_text_marginTop">40dp</dimen>
+    <dimen name="intro_screen_image_marginTop">30dp</dimen>
+    <dimen name="intro_screen_image_height">250dp</dimen>
+    <dimen name="intro_text_margin">20dp</dimen>
+    <dimen name="btn_text_size">15sp</dimen>
+
+</resources>
