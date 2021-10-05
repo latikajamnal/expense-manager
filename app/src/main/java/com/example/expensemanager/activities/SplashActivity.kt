@@ -1,9 +1,10 @@
-package com.example.expensemanager
+package com.example.expensemanager.activities
 
 import android.content.Intent
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
+import com.example.expensemanager.R
 
 
 class SplashActivity() : AppCompatActivity() {
