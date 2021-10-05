@@ -4,9 +4,19 @@
 
     <dimen name="intro_screen_title_text_size">40sp</dimen>
     <dimen name="intro_screen_title_text_marginTop">40dp</dimen>
+    <dimen name="heading_title_text">40sp</dimen>
+    <dimen name="signup_label_title_text">15sp</dimen>
     <dimen name="intro_screen_image_marginTop">30dp</dimen>
     <dimen name="intro_screen_image_height">250dp</dimen>
     <dimen name="intro_text_margin">20dp</dimen>
     <dimen name="btn_text_size">15sp</dimen>
+    <dimen name="left_margin_sign_up_screen">20dp</dimen>
+    <dimen name="margin_top_sign_up_layout">200dp</dimen>
+    <dimen name="margin_bottom_sign_up_label">50dp</dimen>
+    <dimen name="edit_text_sign_up_text_size">20sp</dimen>
+    <dimen name="edit_text_in_between_margins">20dp</dimen>
+    <dimen name="edit_textbox_label_margin">5dp</dimen>
+
+
 
 </resources>
