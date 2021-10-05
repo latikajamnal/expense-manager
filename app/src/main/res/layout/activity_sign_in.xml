@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/sign_in_screen_login"
+            android:background="@drawable/shape_button_rounded_sign_up"
             android:textSize="@dimen/login_screen_button_login_text_size"/>
 
     </LinearLayout>
