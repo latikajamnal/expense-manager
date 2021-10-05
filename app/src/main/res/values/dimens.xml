@@ -3,10 +3,18 @@
     <dimen name="splash_screen_title_text_size">70sp</dimen>
 
     <dimen name="intro_screen_title_text_size">40sp</dimen>
+    <dimen name="intro_screen_help_text_text_size">15sp</dimen>
     <dimen name="intro_screen_title_text_marginTop">40dp</dimen>
     <dimen name="intro_screen_image_marginTop">30dp</dimen>
     <dimen name="intro_screen_image_height">250dp</dimen>
     <dimen name="intro_text_margin">20dp</dimen>
     <dimen name="btn_text_size">15sp</dimen>
+    <dimen name="login_screen_text_view_login_text_size">40sp</dimen>
+    <dimen name="login_screen_button_login_text_size">25sp</dimen>
+    <dimen name="login_screen_layout_margin">35dp</dimen>
+    <dimen name="login_screen_layout_margin_bottom">25dp</dimen>
+    <dimen name="login_screen_text_view_email_text_size">18sp</dimen>
+    <dimen name="login_screen_text_view_password_text_size">18sp</dimen>
+
 
 </resources>
