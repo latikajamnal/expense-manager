@@ -1,9 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignUpActivity">
+    tools:context=".activities.SignUpActivity"
+    android:background="@drawable/login_sign_bg"
+    android:orientation="vertical"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_login_label"
+        android:text="@string/signup_label"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:textSize="@dimen/heading_title_text"
+        android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+        android:layout_marginTop="@dimen/margin_top_sign_up_layout"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_login_panel"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_bottom_sign_up_label"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_name_label_sign_up"
+            android:text="@string/name_label"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:textSize="@dimen/signup_label_title_text"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            />
+
+        <EditText
+            android:id="@+id/et_sign_in_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/edit_text_sign_up_text_size"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginBottom="@dimen/edit_text_in_between_margins"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            android:layout_marginRight="@dimen/left_margin_sign_up_screen"
+
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_email_label"
+            android:text="@string/email_label"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:textSize="@dimen/signup_label_title_text"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            android:layout_marginBottom="@dimen/edit_text_in_between_margins"
+            />
+
+        <EditText
+            android:id="@+id/et_sign_in_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/edit_text_sign_up_text_size"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            android:layout_marginRight="@dimen/left_margin_sign_up_screen"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_marginTop="@dimen/edit_text_in_between_margins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_pwd_label"
+            android:text="@string/pwd_label"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:textSize="@dimen/signup_label_title_text"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            />
+
+        <EditText
+            android:id="@+id/et_sign_in_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:inputType="textWebPassword"
+            android:textSize="@dimen/edit_text_sign_up_text_size"
+            android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginBottom="@dimen/edit_text_in_between_margins"
+            android:layout_marginRight="@dimen/left_margin_sign_up_screen"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="@dimen/edit_text_in_between_margins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_create_account"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_button_rounded_sign_up"
+        android:textSize="@dimen/edit_text_sign_up_text_size"
+        android:text="CREATE ACCOUNT"
+        />
+
+</LinearLayout>
