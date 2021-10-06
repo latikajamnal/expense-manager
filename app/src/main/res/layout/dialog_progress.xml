@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="@dimen/progress_dialog_content_padding">
+    android:padding="10dp">
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="@dimen/progress_bar_size"
-        android:layout_height="@dimen/progress_bar_size"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_progress_text"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,10 +20,10 @@
         android:id="@+id/tv_progress_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/progress_text_marginStart"
+        android:layout_marginStart="16dp"
         android:text="@string/please_wait"
-        android:textColor="@color/primary_text_color"
-        android:textSize="@dimen/progress_text_size"
+        android:textColor="@color/black"
+        android:textSize="@dimen/btn_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="parent" />

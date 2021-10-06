@@ -44,7 +44,7 @@
             />
 
         <EditText
-            android:id="@+id/et_sign_in_name"
+            android:id="@+id/et_sign_up_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -73,7 +73,7 @@
             />
 
         <EditText
-            android:id="@+id/et_sign_in_email"
+            android:id="@+id/et_sign_up_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -98,7 +98,7 @@
             />
 
         <EditText
-            android:id="@+id/et_sign_in_pwd"
+            android:id="@+id/et_sign_up_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"

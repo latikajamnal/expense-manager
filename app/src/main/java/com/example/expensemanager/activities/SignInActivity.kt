@@ -1,10 +1,10 @@
 package com.example.expensemanager.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import com.example.expensemanager.R
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
