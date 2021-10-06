@@ -6,6 +6,9 @@
     <string name="intro_welcome">One stop for all expenses</string>
     <string name="intro_welcome_detailed">Share and Add all of your expenses at one place with your friends and family</string>
     <string name="intro_description">Register</string>
+    <string name="sign_in_screen_login">LOGIN</string>
+    <string name="sign_in_screen_email">Email</string>
+    <string name="sign_in_screen_password">Password</string>
     <string name="signup_label">REGISTER</string>
     <string name="name_label">Name</string>
     <string name="pwd_label">Password</string>
