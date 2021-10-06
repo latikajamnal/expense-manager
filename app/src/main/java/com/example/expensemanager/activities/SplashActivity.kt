@@ -7,7 +7,7 @@ import android.view.WindowManager
 import com.example.expensemanager.R
 
 
-class SplashActivity() : AppCompatActivity() {
+class SplashActivity() : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

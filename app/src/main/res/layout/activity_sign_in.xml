@@ -36,6 +36,7 @@
                 android:textSize="@dimen/login_screen_text_view_email_text_size"/>
 
             <EditText
+                android:id="@+id/et_sign_in_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/login_screen_layout_margin_bottom"/>
@@ -54,6 +55,7 @@
                 android:textSize="@dimen/login_screen_text_view_password_text_size"/>
 
             <EditText
+                android:id="@+id/et_sign_in_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -62,6 +64,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
