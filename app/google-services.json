@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "434145214978",
+    "firebase_url": "https://expense-manager-9caaf-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "expense-manager-9caaf",
+    "storage_bucket": "expense-manager-9caaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434145214978:android:46ca6fcf2ce338cc579d1b",
+        "android_client_info": {
+          "package_name": "com.example.expensemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434145214978-g7a6fuo78j37711iqfadjqok8uajh6pt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.expensemanager",
+            "certificate_hash": "89630ad0474b2b7feb99e9f11b678e80450339c7"
+          }
+        },
+        {
+          "client_id": "434145214978-o8kbikt37iqj27u2tf0da73ken9mas56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDph9fgK32IKYN4bjgJsrcFitJdomPGkvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434145214978-o8kbikt37iqj27u2tf0da73ken9mas56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

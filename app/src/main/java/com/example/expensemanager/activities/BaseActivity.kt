@@ -42,4 +42,8 @@ open class BaseActivity : AppCompatActivity() {
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
         snackBar.show()
     }
+
+    fun hideProgressDialog() {
+        mProgressDialog.dismiss()
+    }
 }
