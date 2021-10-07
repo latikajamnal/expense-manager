@@ -69,7 +69,6 @@
             android:gravity="left"
             android:textSize="@dimen/signup_label_title_text"
             android:layout_marginLeft="@dimen/left_margin_sign_up_screen"
-            android:layout_marginBottom="@dimen/edit_text_in_between_margins"
             />
 
         <EditText
