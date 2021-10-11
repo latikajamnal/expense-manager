@@ -46,24 +46,29 @@ class SignUpActivity : BaseActivity() {
         val password: String = et_sign_up_pwd.text.toString().trim { it <= ' ' }
         if (validateForm(name, email, password)
         ) {
-            Log.e(TAG, "createAccount: " + "Form is valid")
-            showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val firebaseUser: FirebaseUser = task.result!!.user!!
-                        Log.e(TAG, "createAccount: Account is created with email $email")
-                        val user = Users(
-                            firebaseUser.uid, name, email
-                        )
-                        FireStore().registerUser(this, user)
-                        startActivity(Intent(this, MainActivity::class.java))
-                    } else {
-                        hideProgressDialog()
-                        Toast.makeText(this, "Failed to create account", Toast.LENGTH_LONG)
-                            .show()
+            if(password.length < 6) {
+                Toast.makeText(this, "Please enter at least 6 digit password", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                Log.e(TAG, "createAccount: " + "Form is valid")
+                showProgressDialog(resources.getString(R.string.please_wait))
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            Log.e(TAG, "createAccount: Account is created with email $email")
+                            val user = Users(
+                                firebaseUser.uid, name, email
+                            )
+                            FireStore().registerUser(this, user)
+                            startActivity(Intent(this, MainActivity::class.java))
+                        } else {
+                            hideProgressDialog()
+                            Toast.makeText(this, "Failed to create account", Toast.LENGTH_LONG)
+                                .show()
+                        }
                     }
-                }
+            }
         }
     }
 
