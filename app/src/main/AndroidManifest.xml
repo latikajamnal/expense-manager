@@ -12,12 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseManager">
         <activity
-            android:name=".activities.SettingAcitivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity
             android:name=".activities.BaseActivity"
             android:exported="true" />
         <activity
