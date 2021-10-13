@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--All the values used are defined in the constant files.-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:dither="true">
+
+            <gradient
+                android:angle="0"
+                android:endColor="#ECAC89"
+                android:startColor="#81D9EF"
+                android:centerColor="#DF74DA"
+                android:gradientRadius="100dp"
+                android:type="linear" />
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+
+</selector>
