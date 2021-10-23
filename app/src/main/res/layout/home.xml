@@ -39,7 +39,7 @@
             android:textSize="30dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:text="S$2500.00"/>
+            android:text="$0.00"/>
 
     </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="18dp"
-                    android:text="S$200.00"/>
+                    android:text="$0.00"/>
 
             </LinearLayout>
 
@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="18dp"
-                    android:text="S$200.00"/>
+                    android:text="$0.00"/>
 
             </LinearLayout>
 
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="18dp"
-                    android:text="S$200.00"/>
+                    android:text="$0.00"/>
 
             </LinearLayout>
 
@@ -215,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="S$200.00"
+                    android:text="$0.00"
                     android:textSize="18dp" />
 
             </LinearLayout>
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="18dp"
-                    android:text="S$200.00"/>
+                    android:text="$0.00"/>
 
             </LinearLayout>
 
@@ -266,7 +266,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/ib_add_buttom"
+        android:id="@+id/ib_add_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
