@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseManager">
         <activity
+            android:name=".activities.AddExpenseActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true" />
+        <activity
             android:name=".activities.BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
             android:name=".activities.SplashActivity"
