@@ -1,21 +1,29 @@
 package com.example.expensemanager.activities
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.expensemanager.R
+import com.example.expensemanager.firebase.FireStore
+import com.example.expensemanager.models.ExpenseList
+import com.example.expensemanager.models.Expenses
 import kotlinx.android.synthetic.main.activity_add_expense.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
+class AddExpenseActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private var cal = Calendar.getInstance()
     private lateinit var datePickerDialog: DatePickerDialog
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+    private lateinit var selectedCategory: String
+    private lateinit var spinner:Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +31,7 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_add_expense)
         setUpExpenseUI()
         et_expense_date.setOnClickListener(this)
+        btn_expense_save.setOnClickListener(this)
         dateSetListener =
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
@@ -33,7 +42,7 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setUpExpenseUI() {
-        val spinner: Spinner = findViewById(R.id.dropdown_categories)
+        spinner = findViewById(R.id.dropdown_categories)
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
@@ -45,6 +54,7 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
+        spinner.onItemSelectedListener = this
     }
 
     override fun onClick(v: View?) {
@@ -61,6 +71,13 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
                 datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
                 datePickerDialog.show()
             }
+            R.id.btn_expense_save -> {
+                if(et_expense.text.toString() != "") {
+                    addExpense()
+                } else {
+                    Toast.makeText(this, "Add Expense Value", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -72,5 +89,40 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener {
         val myFormat = "dd.MM.yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.getDefault()) // A date format
         et_expense_date.setText(sdf.format(cal.time).toString()) // A selected date using format which we have used is set to the UI.
+    }
+
+    private fun addExpense() {
+        val expenseArrayList: ArrayList<ExpenseList> = ArrayList()
+        var expenseList = ExpenseList(
+        et_expense.text.toString(),
+            selectedCategory,
+        et_expense_description.text.toString(),
+        et_expense_date.text.toString()
+        )
+
+        expenseArrayList.add(expenseList)
+
+        var expense= Expenses(
+        FireStore().getCurrentUserID(),
+        FireStore().getCurrentUserName(),
+        expenseArrayList
+        )
+
+        FireStore().addExpense(this, expense)
+    }
+
+    fun expenseAddedSuccessfully(){
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        parent!!.getItemAtPosition(position)
+        selectedCategory = spinner.selectedItem.toString()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        parent!!.getItemAtPosition(0)
+        selectedCategory = spinner.selectedItem.toString()
     }
 }

@@ -8,7 +8,4 @@ object Constants {
     const val ID: String = "id"
     const val NAME: String = "name"
     const val EMAIL: String = "email"
-
-
-
 }
