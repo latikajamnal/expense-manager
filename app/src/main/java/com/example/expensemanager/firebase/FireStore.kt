@@ -2,7 +2,10 @@ package com.example.expensemanager.firebase
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
+import com.example.expensemanager.activities.AddExpenseActivity
 import com.example.expensemanager.activities.SignUpActivity
+import com.example.expensemanager.models.Expenses
 import com.example.expensemanager.models.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,5 +55,29 @@ class FireStore {
             currentUserID = currentUser.uid
         }
         return currentUserID
+    }
+
+    fun getCurrentUserName(): String {
+        // An Instance of currentUser using FirebaseAuth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        // A variable to assign the currentUserId if it is not null or else it will be blank.
+        var currentUserName = ""
+        if (currentUser != null) {
+            currentUserName = currentUser.displayName.toString()
+        }
+        return currentUserName
+    }
+
+    fun addExpense(activity: AddExpenseActivity, expense: Expenses) {
+        mFireStore.collection("EXPENSES")
+            .document()
+            .set(expense, SetOptions.merge())
+            .addOnSuccessListener {
+                Toast.makeText(activity, "Expense added successfully", Toast.LENGTH_SHORT).show()
+                activity.expenseAddedSuccessfully()
+            }
+            .addOnFailureListener{
+                Toast.makeText(activity, "Failed to create expense", Toast.LENGTH_SHORT).show()
+            }
     }
 }
