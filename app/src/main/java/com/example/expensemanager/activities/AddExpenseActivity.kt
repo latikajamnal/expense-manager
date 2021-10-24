@@ -2,13 +2,8 @@ package com.example.expensemanager.activities
 
 import android.app.Activity
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import com.example.expensemanager.R
 import com.example.expensemanager.firebase.FireStore
 import com.example.expensemanager.models.ExpenseList
@@ -16,14 +11,17 @@ import com.example.expensemanager.models.Expenses
 import kotlinx.android.synthetic.main.activity_add_expense.*
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.*
 
-class AddExpenseActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+class AddExpenseActivity : BaseActivity(), View.OnClickListener,
+    AdapterView.OnItemSelectedListener {
 
     private var cal = Calendar.getInstance()
     private lateinit var datePickerDialog: DatePickerDialog
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
     private lateinit var selectedCategory: String
-    private lateinit var spinner:Spinner
+    private lateinit var spinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +53,9 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener, AdapterVie
             spinner.adapter = adapter
         }
         spinner.onItemSelectedListener = this
+        val todayDate =
+            SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date()).toString()
+        (et_expense_date as TextView).text = todayDate
     }
 
     override fun onClick(v: View?) {
@@ -72,10 +73,10 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener, AdapterVie
                 datePickerDialog.show()
             }
             R.id.btn_expense_save -> {
-                if(et_expense.text.toString() != "") {
+                if ((et_expense.text.toString() != "") || (et_expense.text.toString() != "0")) {
                     addExpense()
                 } else {
-                    Toast.makeText(this, "Add Expense Value", Toast.LENGTH_SHORT).show()
+                    showErrorSnackBar("Please add Expense Value")
                 }
             }
         }
@@ -88,30 +89,31 @@ class AddExpenseActivity : AppCompatActivity(), View.OnClickListener, AdapterVie
     private fun updateDateInView() {
         val myFormat = "dd.MM.yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.getDefault()) // A date format
-        et_expense_date.setText(sdf.format(cal.time).toString()) // A selected date using format which we have used is set to the UI.
+        et_expense_date.setText(
+            sdf.format(cal.time).toString()
+        ) // A selected date using format which we have used is set to the UI.
     }
 
     private fun addExpense() {
         val expenseArrayList: ArrayList<ExpenseList> = ArrayList()
         var expenseList = ExpenseList(
-        et_expense.text.toString(),
+            et_expense.text.toString(),
             selectedCategory,
-        et_expense_description.text.toString(),
-        et_expense_date.text.toString()
+            et_expense_description.text.toString(),
+            et_expense_date.text.toString()
         )
 
         expenseArrayList.add(expenseList)
 
-        var expense= Expenses(
-        FireStore().getCurrentUserID(),
-        FireStore().getCurrentUserName(),
-        expenseArrayList
+        var expense = Expenses(
+            FireStore().getCurrentUserID(),
+            FireStore().getCurrentUserName(),
+            expenseArrayList
         )
-
         FireStore().addExpense(this, expense)
     }
 
-    fun expenseAddedSuccessfully(){
+    fun expenseAddedSuccessfully() {
         setResult(Activity.RESULT_OK)
         finish()
     }
