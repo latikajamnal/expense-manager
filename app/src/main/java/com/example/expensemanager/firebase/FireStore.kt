@@ -5,18 +5,24 @@ import android.util.Log
 import android.widget.Toast
 import com.example.expensemanager.activities.AddExpenseActivity
 import com.example.expensemanager.activities.SignUpActivity
+import com.example.expensemanager.models.ExpenseList
 import com.example.expensemanager.models.Expenses
 import com.example.expensemanager.models.Users
+import com.example.expensemanager.utils.Constants
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import kotlin.math.log
 
 
 class FireStore {
 
+    private final val TAG = "FireStore"
 
     // Create a instance of Firebase Firestore
     private val mFireStore = FirebaseFirestore.getInstance()
+    private var mName: String = ""
 
     /**
      * A function to make an entry of the registered user in the firestore database.
@@ -57,18 +63,28 @@ class FireStore {
         return currentUserID
     }
 
-    fun getCurrentUserName(): String {
-        // An Instance of currentUser using FirebaseAuth
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        // A variable to assign the currentUserId if it is not null or else it will be blank.
-        var currentUserName = ""
-        if (currentUser != null) {
-            currentUserName = currentUser.displayName.toString()
-        }
-        return currentUserName
+    fun addExpenseFetchName(activity: AddExpenseActivity, expenseArrayList: ArrayList<ExpenseList>) {
+        mFireStore.collection(Constants.USERS)
+            .whereEqualTo(Constants.ID, FirebaseAuth.getInstance().currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { document ->
+                val currentUserName = document.documents[0].toObject(Users::class.java)!!.name
+                activity.hideProgressDialog()
+                var expense = Expenses(
+                    getCurrentUserID(),
+                    currentUserName,
+                    expenseArrayList
+                )
+                addExpensesToDB(activity, expense)
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "getCurrentUserName: Exception --> $e")
+            }
+
+
     }
 
-    fun addExpense(activity: AddExpenseActivity, expense: Expenses) {
+    fun addExpensesToDB(activity: AddExpenseActivity, expense: Expenses) {
         mFireStore.collection("EXPENSES")
             .document()
             .set(expense, SetOptions.merge())
@@ -76,7 +92,7 @@ class FireStore {
                 Toast.makeText(activity, "Expense added successfully", Toast.LENGTH_SHORT).show()
                 activity.expenseAddedSuccessfully()
             }
-            .addOnFailureListener{
+            .addOnFailureListener {
                 Toast.makeText(activity, "Failed to create expense", Toast.LENGTH_SHORT).show()
             }
     }

@@ -3,6 +3,7 @@ package com.example.expensemanager.activities
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.expensemanager.R
 import com.example.expensemanager.firebase.FireStore
@@ -102,15 +103,9 @@ class AddExpenseActivity : BaseActivity(), View.OnClickListener,
             et_expense_description.text.toString(),
             et_expense_date.text.toString()
         )
-
         expenseArrayList.add(expenseList)
-
-        var expense = Expenses(
-            FireStore().getCurrentUserID(),
-            FireStore().getCurrentUserName(),
-            expenseArrayList
-        )
-        FireStore().addExpense(this, expense)
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStore().addExpenseFetchName(this, expenseArrayList)
     }
 
     fun expenseAddedSuccessfully() {
