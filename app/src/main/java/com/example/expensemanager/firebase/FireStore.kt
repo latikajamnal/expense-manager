@@ -4,16 +4,16 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.example.expensemanager.activities.AddExpenseActivity
+import com.example.expensemanager.activities.HomeFragment
+import com.example.expensemanager.activities.MainActivity
 import com.example.expensemanager.activities.SignUpActivity
 import com.example.expensemanager.models.ExpenseList
 import com.example.expensemanager.models.Expenses
 import com.example.expensemanager.models.Users
 import com.example.expensemanager.utils.Constants
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import kotlin.math.log
 
 
 class FireStore {
@@ -63,7 +63,10 @@ class FireStore {
         return currentUserID
     }
 
-    fun addExpenseFetchName(activity: AddExpenseActivity, expenseArrayList: ArrayList<ExpenseList>) {
+    fun addExpenseFetchName(
+        activity: AddExpenseActivity,
+        expenseArrayList: ArrayList<ExpenseList>
+    ) {
         mFireStore.collection(Constants.USERS)
             .whereEqualTo(Constants.ID, FirebaseAuth.getInstance().currentUser!!.uid)
             .get()
@@ -94,6 +97,24 @@ class FireStore {
             }
             .addOnFailureListener {
                 Toast.makeText(activity, "Failed to create expense", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun loadUserDataInFragment(fragment: HomeFragment) {
+        // Here we pass the collection name from which we wants the data.
+        mFireStore.collection(Constants.USERS)
+            // The document id to get the Fields of user.
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                // Here we have received the document snapshot which is converted into the User Data model object.
+                val loggedInUser = document.toObject(Users::class.java)!!
+                fragment.setUserDataInUI(loggedInUser)
+            }.addOnFailureListener {
+                Log.e(
+                    TAG,
+                    "Error while getting loggedIn user details"
+                )
             }
     }
 }
