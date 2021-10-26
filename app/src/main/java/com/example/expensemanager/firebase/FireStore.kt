@@ -14,6 +14,9 @@ import com.example.expensemanager.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class FireStore {
@@ -107,9 +110,29 @@ class FireStore {
             .document(getCurrentUserID())
             .get()
             .addOnSuccessListener { document ->
-                // Here we have received the document snapshot which is converted into the User Data model object.
                 val loggedInUser = document.toObject(Users::class.java)!!
                 fragment.setUserDataInUI(loggedInUser)
+            }.addOnFailureListener {
+                Log.e(
+                    TAG,
+                    "Error while getting loggedIn user details"
+                )
+            }
+    }
+
+    fun loadUserExpenseDataInFragment(fragment: HomeFragment) {
+        // Here we pass the collection name from which we wants the data.
+        mFireStore.collection(Constants.EXPENSES)
+            .whereEqualTo(Constants.EXPENSES_USER_ID, FirebaseAuth.getInstance().currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { document ->
+                val expensesList: ArrayList<Map<String, Any>> = ArrayList()
+   //             val expensesList: ArrayList< Expenses> = ArrayList()
+                for (documents in document.documents) {
+                    expensesList.add(documents.data!!.toMutableMap())
+      //              expensesList.add(documents.toObject(Expenses::class.java)!!)
+                }
+                fragment.setUserExpenseDataInUI(expensesList)
             }.addOnFailureListener {
                 Log.e(
                     TAG,
