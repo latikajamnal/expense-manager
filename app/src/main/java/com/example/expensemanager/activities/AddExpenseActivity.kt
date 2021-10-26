@@ -3,16 +3,15 @@ package com.example.expensemanager.activities
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.expensemanager.R
 import com.example.expensemanager.firebase.FireStore
-import com.example.expensemanager.models.ExpenseList
 import com.example.expensemanager.models.Expenses
 import kotlinx.android.synthetic.main.activity_add_expense.*
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
 
 
 class AddExpenseActivity : BaseActivity(), View.OnClickListener,
@@ -96,16 +95,17 @@ class AddExpenseActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun addExpense() {
-        val expenseArrayList: ArrayList<ExpenseList> = ArrayList()
-        var expenseList = ExpenseList(
-            et_expense.text.toString(),
+        val expenseArrayList: ArrayList<String> = ArrayList()
+        var expense = Expenses(
+            FirebaseAuth.getInstance().currentUser?.uid!!.toString(),
+            "", // name would be fetched later
+            et_expense.text.toString().toFloat(),
             selectedCategory,
             et_expense_description.text.toString(),
             et_expense_date.text.toString()
         )
-        expenseArrayList.add(expenseList)
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStore().addExpenseFetchName(this, expenseArrayList)
+        FireStore().addExpenseFetchName(this, expense)
     }
 
     fun expenseAddedSuccessfully() {

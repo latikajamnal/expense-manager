@@ -1,22 +1,17 @@
 package com.example.expensemanager.firebase
 
-import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.example.expensemanager.activities.AddExpenseActivity
 import com.example.expensemanager.activities.HomeFragment
-import com.example.expensemanager.activities.MainActivity
 import com.example.expensemanager.activities.SignUpActivity
-import com.example.expensemanager.models.ExpenseList
 import com.example.expensemanager.models.Expenses
 import com.example.expensemanager.models.Users
 import com.example.expensemanager.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
 class FireStore {
@@ -68,26 +63,20 @@ class FireStore {
 
     fun addExpenseFetchName(
         activity: AddExpenseActivity,
-        expenseArrayList: ArrayList<ExpenseList>
+        expenses: Expenses
     ) {
         mFireStore.collection(Constants.USERS)
             .whereEqualTo(Constants.ID, FirebaseAuth.getInstance().currentUser!!.uid)
             .get()
             .addOnSuccessListener { document ->
                 val currentUserName = document.documents[0].toObject(Users::class.java)!!.name
+                expenses.name = currentUserName
                 activity.hideProgressDialog()
-                var expense = Expenses(
-                    getCurrentUserID(),
-                    currentUserName,
-                    expenseArrayList
-                )
-                addExpensesToDB(activity, expense)
+                addExpensesToDB(activity, expenses)
             }
             .addOnFailureListener { e ->
                 Log.e(TAG, "getCurrentUserName: Exception --> $e")
             }
-
-
     }
 
     fun addExpensesToDB(activity: AddExpenseActivity, expense: Expenses) {
