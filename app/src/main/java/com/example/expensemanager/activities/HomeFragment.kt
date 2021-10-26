@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity as MainActivity).showProgressDialog(resources.getString(R.string.please_wait))
         FireStore().loadUserDataInFragment(this@HomeFragment)
         FireStore().loadUserExpenseDataInFragment(this@HomeFragment)
     }
@@ -71,6 +72,7 @@ class HomeFragment : Fragment() {
         tv_other_amount.text = "$" + mOthersExpense.toString()
         tv_total_amount.text =
             "$" + (mFoodExpense + mEntertainmentExpense + mTravelExpense + mShoppingExpense + mOthersExpense).toString()
+        (activity as MainActivity).hideProgressDialog()
     }
 
     fun calculateDataFromExpense(category: String): Float {
