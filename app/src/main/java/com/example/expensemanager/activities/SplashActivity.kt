@@ -35,6 +35,6 @@ class SplashActivity() : BaseActivity() {
                 startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
             }
             finish()
-        }, 2500)
+        }, 1500)
     }
 }
